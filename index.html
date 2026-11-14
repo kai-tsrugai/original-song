@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>はじまり / オリジナル曲</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .player-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            width: 320px;
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: #e94560;
+        }
+        p {
+            font-size: 0.9rem;
+            color: #a0a0a0;
+            margin-bottom: 25px;
+        }
+        audio {
+            width: 100%;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="player-card">
+        <h1>はじまり</h1>
+        <p>Original Chiptune Track</p>
+        
+        <!-- 音声プレイヤー -->
+        <audio controls>
+            <source src="仮.mp3" type="audio/mp3">
+            お使いのブラウザは音声プレイヤーに対応していません。
+        </audio>
+    </div>
+
+</body>
+</html>
