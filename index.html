@@ -10,10 +10,23 @@
             background: linear-gradient(135deg, #1a1a2e, #16213e);
             color: #ffffff;
             display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .ad-container {
+            width: 100%;
+            max-width: 728px;
+            min-height: 50px;
+            display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            margin: 10px 0;
+            overflow: hidden;
         }
         .player-card {
             background: rgba(255, 255, 255, 0.05);
@@ -23,7 +36,9 @@
             border-radius: 16px;
             text-align: center;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            width: 320px;
+            width: 100%;
+            max-width: 320px;
+            margin: 20px 0;
         }
         h1 {
             font-size: 1.5rem;
@@ -43,15 +58,29 @@
 </head>
 <body>
 
+    <!-- 上部広告エリア -->
+    <div class="ad-container">
+        <!-- admax -->
+        <script src="https://adm.shinobi.jp/s/9ebb6e3eca6869cde14b1939fa014c10"></script>
+        <!-- admax -->
+    </div>
+
+    <!-- メインの音楽プレイヤー -->
     <div class="player-card">
         <h1>はじまり</h1>
         <p>Original Chiptune Track</p>
         
-        <!-- 音声プレイヤー -->
         <audio controls>
             <source src="仮.mp3" type="audio/mp3">
             お使いのブラウザは音声プレイヤーに対応していません。
         </audio>
+    </div>
+
+    <!-- 下部広告エリア -->
+    <div class="ad-container">
+        <!-- admax -->
+        <script src="https://adm.shinobi.jp/s/9ebb6e3eca6869cde14b1939fa014c10"></script>
+        <!-- admax -->
     </div>
 
 </body>
