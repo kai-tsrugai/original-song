@@ -198,25 +198,15 @@
     </div>
 
     <script>
-        // ★ 曲データをここに追加していくだけで一覧と詳細ページが自動で増えます ★
+        // 曲データ（hajimari.mp3を指定）
         const tracks = [
             {
                 number: "01",
                 title: "旅の始まり",
                 genre: "Chiptune / 8bit",
-                file: "audio/仮.mp3",
+                file: "hajimari.mp3",
                 memo: "軽快でワクワクする8bit風のオリジナル曲です。これから始まる冒険の旅をイメージして制作しました。"
             }
-            // 2曲目を追加する時は、上の { ... } の後ろにカンマ「,」をつけて以下のように書きます
-            /*
-            ,{
-                number: "02",
-                title: "次の曲のタイトル",
-                genre: "ジャンル名",
-                file: "audio/次のファイル名.mp3",
-                memo: "曲の解説文をここに書きます。"
-            }
-            */
         ];
 
         const listView = document.getElementById('list-view');
@@ -260,7 +250,7 @@
 
         // 一覧画面に戻る
         function showList() {
-            audioPlayer.pause(); // 戻るときに再生を止める
+            audioPlayer.pause();
             detailView.classList.add('hidden');
             listView.classList.remove('hidden');
             document.title = 'My Original Tracks';
