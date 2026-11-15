@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>はじまり / オリジナル曲</title>
+    <title>My Original Tracks</title>
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -28,6 +28,72 @@
             margin: 10px 0;
             overflow: hidden;
         }
+        main {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+        /* --- 一覧画面のスタイル --- */
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        header h1 {
+            font-size: 1.8rem;
+            color: #e94560;
+            margin: 0 0 5px 0;
+        }
+        header p {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        .track-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .track-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .track-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .track-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+        }
+        .track-meta {
+            font-size: 0.85rem;
+            color: #a0a0a0;
+            margin: 0;
+        }
+        .play-badge {
+            background: #e94560;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        /* --- 詳細＆試聴画面のスタイル --- */
         .player-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -37,22 +103,50 @@
             text-align: center;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             width: 100%;
-            max-width: 320px;
-            margin: 20px 0;
+            max-width: 400px;
+            box-sizing: border-box;
         }
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
+        .player-card h2 {
+            font-size: 1.6rem;
+            margin: 0 0 5px 0;
             color: #e94560;
         }
-        p {
+        .subtitle {
             font-size: 0.9rem;
             color: #a0a0a0;
-            margin-bottom: 25px;
+            margin: 0 0 20px 0;
         }
         audio {
             width: 100%;
             outline: none;
+            margin-bottom: 20px;
+        }
+        .description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #dcdcdc;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            background: transparent;
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .back-btn:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
@@ -65,16 +159,36 @@
         <!-- admax -->
     </div>
 
-    <!-- メインの音楽プレイヤー -->
-    <div class="player-card">
-        <h1>はじまり</h1>
-        <p>Original Chiptune Track</p>
-        
-        <audio controls>
-            <source src="仮.mp3" type="audio/mp3">
-            お使いのブラウザは音声プレイヤーに対応していません。
-        </audio>
-    </div>
+    <main>
+        <!-- ① 曲一覧ビュー -->
+        <div id="list-view" style="width: 100%;">
+            <header>
+                <h1>My Original Tracks</h1>
+                <p>オリジナル楽曲まとめ</p>
+            </header>
+            <div id="track-list" class="track-list">
+                <!-- JavaScriptでここに曲カードが自動生成されます -->
+            </div>
+        </div>
+
+        <!-- ② 曲詳細＆試聴ビュー -->
+        <div id="detail-view" class="player-card hidden">
+            <h2 id="detail-title">曲名</h2>
+            <p id="detail-genre" class="subtitle">ジャンル</p>
+            
+            <audio id="audio-player" controls>
+                <source id="audio-source" src="" type="audio/mp3">
+                お使いのブラウザは音声プレイヤーに対応していません。
+            </audio>
+
+            <div class="description">
+                <strong>【楽曲メモ】</strong><br>
+                <span id="detail-memo">ここに解説が入ります</span>
+            </div>
+
+            <button class="back-btn" onclick="showList()">← 曲一覧に戻る</button>
+        </div>
+    </main>
 
     <!-- 下部広告エリア -->
     <div class="ad-container">
@@ -82,6 +196,79 @@
         <script src="https://adm.shinobi.jp/s/9ebb6e3eca6869cde14b1939fa014c10"></script>
         <!-- admax -->
     </div>
+
+    <script>
+        // ★ 曲データをここに追加していくだけで一覧と詳細ページが自動で増えます ★
+        const tracks = [
+            {
+                number: "01",
+                title: "旅の始まり",
+                genre: "Chiptune / 8bit",
+                file: "audio/仮.mp3",
+                memo: "軽快でワクワクする8bit風のオリジナル曲です。これから始まる冒険の旅をイメージして制作しました。"
+            }
+            // 2曲目を追加する時は、上の { ... } の後ろにカンマ「,」をつけて以下のように書きます
+            /*
+            ,{
+                number: "02",
+                title: "次の曲のタイトル",
+                genre: "ジャンル名",
+                file: "audio/次のファイル名.mp3",
+                memo: "曲の解説文をここに書きます。"
+            }
+            */
+        ];
+
+        const listView = document.getElementById('list-view');
+        const detailView = document.getElementById('detail-view');
+        const trackListEl = document.getElementById('track-list');
+        const audioPlayer = document.getElementById('audio-player');
+        const audioSource = document.getElementById('audio-source');
+
+        // 一覧画面のカードを生成
+        function renderList() {
+            trackListEl.innerHTML = '';
+            tracks.forEach((track, index) => {
+                const card = document.createElement('div');
+                card.className = 'track-card';
+                card.onclick = () => showDetail(index);
+                card.innerHTML = `
+                    <div>
+                        <p class="track-title">${track.number}. ${track.title}</p>
+                        <p class="track-meta">${track.genre}</p>
+                    </div>
+                    <span class="play-badge">▶ 聴く</span>
+                `;
+                trackListEl.appendChild(card);
+            });
+        }
+
+        // 詳細＆試聴画面に切り替え
+        function showDetail(index) {
+            const track = tracks[index];
+            document.getElementById('detail-title').textContent = track.title;
+            document.getElementById('detail-genre').textContent = track.genre;
+            document.getElementById('detail-memo').textContent = track.memo;
+            
+            audioSource.src = track.file;
+            audioPlayer.load();
+
+            listView.classList.add('hidden');
+            detailView.classList.remove('hidden');
+            document.title = `${track.title} / オリジナル曲`;
+        }
+
+        // 一覧画面に戻る
+        function showList() {
+            audioPlayer.pause(); // 戻るときに再生を止める
+            detailView.classList.add('hidden');
+            listView.classList.remove('hidden');
+            document.title = 'My Original Tracks';
+        }
+
+        // 初期表示
+        renderList();
+    </script>
 
 </body>
 </html>
